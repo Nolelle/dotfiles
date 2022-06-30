@@ -4,4 +4,3 @@ require('nolelle.gitsigns')
 require('nolelle.lsp')
 require('nolelle.treesitter')
 require('nolelle.null-ls')
-
