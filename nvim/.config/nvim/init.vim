@@ -85,6 +85,7 @@ Plug 'lewis6991/gitsigns.nvim'
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-cmp'
 
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
@@ -99,6 +100,9 @@ Plug 'onsails/lspkind-nvim'
 " Null-LS
 Plug 'jose-elias-alvarez/null-ls.nvim'
 
+" File Icons and file tree
+Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
+Plug 'kyazdani42/nvim-tree.lua'
 
 call plug#end()
 
