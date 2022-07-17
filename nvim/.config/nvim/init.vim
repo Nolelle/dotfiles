@@ -104,6 +104,12 @@ Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
 Plug 'kyazdani42/nvim-tree.lua'
 
+
+" Java LSP
+Plug 'mfussenegger/nvim-jdtls'
+
+
+
 call plug#end()
 
 
