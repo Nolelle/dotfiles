@@ -56,10 +56,13 @@ set signcolumn=number
 
 " Disable highlighting of all search results
 set nohlsearch
+
 " Only highlight first search result
 set incsearch
+
 " Default to case insensitive search
 set ignorecase
+
 " Use case sensitive search if pattern includes uppercase letter
 set smartcase
 
@@ -105,14 +108,7 @@ Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
 Plug 'kyazdani42/nvim-tree.lua'
 
 
-" Java LSP
-Plug 'mfussenegger/nvim-jdtls'
-
-
-
 call plug#end()
-
-
 
 " --- Remaps
 let mapleader = ' '
@@ -121,23 +117,8 @@ nnoremap <leader>j :wincmd j<Cr>
 nnoremap <leader>k :wincmd k<Cr>
 nnoremap <leader>l :wincmd l<Cr>
 
-nnoremap <C-p> :Telescope find_files<Cr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+nnoremap <C-f> :Telescope find_files<Cr>
+nnoremap <C-d> :NvimTreeToggle<Cr>
 
 " --- Colours 
 colorscheme gruvbox
