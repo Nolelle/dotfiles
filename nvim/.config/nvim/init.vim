@@ -110,6 +110,9 @@ Plug 'onsails/lspkind-nvim'
 Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
 Plug 'kyazdani42/nvim-tree.lua'
 
+" AutoComplete Brackets
+Plug 'windwp/nvim-autopairs'
+
 
 call plug#end()
 
