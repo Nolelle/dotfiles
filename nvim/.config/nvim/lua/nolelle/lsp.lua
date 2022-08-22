@@ -1,4 +1,8 @@
 local nvim_lsp = require('lspconfig')
+local cmp = require('cmp')
+local cmp_nvim_lsp = require('cmp_nvim_lsp')
+local lspkind = require('lspkind')
+local luasnip = require('luasnip')
 
 --
 -- Lspconfig
@@ -67,10 +71,6 @@ end
 -- Set completeopt to have a better completion experience
 vim.opt.completeopt = {'menu','menuone','noselect'}
 
-local cmp = require('cmp')
-local cmp_nvim_lsp = require('cmp_nvim_lsp')
-local lspkind = require('lspkind')
-local luasnip = require('luasnip')
 
 cmp.setup {
   formatting = {
