@@ -1,9 +1,4 @@
-local cmp = require('cmp')
-local cmp_nvim_lsp = require('cmp_nvim_lsp')
-local lspkind = require('lspkind')
-local luasnip = require('luasnip')
 local nvim_lsp = require('lspconfig')
-local null_ls = require('null-ls')
 
 --
 -- Lspconfig
@@ -20,25 +15,25 @@ local on_attach  = function(client, bufnr)
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', 'gT', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
     buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
     buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
     buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
     buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-    buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
     buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-    buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-    buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+    buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.get_line_diagnostics()<CR>', opts)
+    buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
     buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
     -- Disable Autoformat
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+    client.resolved_capabilities.document_formatting = true 
+    client.resolved_capabilities.document_range_formatting = true 
     
     if client.resolved_capabilities.document_formatting then
     vim.api.nvim_command [[augroup Format]]
@@ -65,39 +60,17 @@ for _, lsp in ipairs(servers) do
     }
 end
 
-
---
--- Null-ls
---
-
--- null-ls is a general purpose language server that doesn't need
--- the same config as actual language servers like tsserver, so
--- setup is a little different.
-null_ls.setup({
-    sources = {
-        -- prettierd is installed globally via npm
-        null_ls.builtins.formatting.prettierd
-    },
-    on_attach = function(client, bufnr)
-        -- Autoformat
-        if client.resolved_capabilities.document_formatting then
-           vim.cmd [[augroup Format]]
-           vim.cmd [[autocmd! * <buffer>]]
-           vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
-           vim.cmd [[augroup END]]
-        end
-        -- call local on_attach
-        return on_attach(client, bufnr)
-    end
-})
-
-
 --
 -- Nvim-cmp
 --
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.opt.completeopt = {'menu','menuone','noselect'}
+
+local cmp = require('cmp')
+local cmp_nvim_lsp = require('cmp_nvim_lsp')
+local lspkind = require('lspkind')
+local luasnip = require('luasnip')
 
 cmp.setup {
   formatting = {
@@ -136,8 +109,8 @@ cmp.setup {
   },
   snippet = {
     expand = function(args)
-        luasnip.lsp_expand(args.body)
-    end
+        require('luasnip').lsp_expand(args.body)
+    end,
   },
   sources = {
     { name = 'nvim_lsp' },

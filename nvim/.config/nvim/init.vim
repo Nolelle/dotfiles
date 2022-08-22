@@ -69,7 +69,10 @@ set smartcase
 " --- Plugins
 call plug#begin('~/.config/nvim/plugged')
 
+" --- Themes 
 Plug 'gruvbox-community/gruvbox'
+
+" --- Telescope 
 " Telescope requires plenary to function
 Plug 'nvim-lua/plenary.nvim'
 " The main Telescope plugin
@@ -93,15 +96,15 @@ Plug 'hrsh7th/nvim-cmp'
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 
-" Autocompletion
-Plug 'hrsh7th/nvim-cmp'
+" LSP Autocompletion
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/nvim-cmp'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'onsails/lspkind-nvim'
 
-" Null-LS
-Plug 'jose-elias-alvarez/null-ls.nvim'
 
 " File Icons and file tree
 Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
