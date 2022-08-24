@@ -71,6 +71,8 @@ call plug#begin('~/.config/nvim/plugged')
 
 " --- Themes 
 Plug 'gruvbox-community/gruvbox'
+Plug 'ray-x/starry.nvim'
+
 
 " --- Telescope 
 " Telescope requires plenary to function
@@ -126,8 +128,9 @@ nnoremap <leader>l :wincmd l<Cr>
 nnoremap <C-f> :Telescope find_files<Cr>
 nnoremap <C-d> :NvimTreeToggle<Cr>
 
+
 " --- Colours 
-colorscheme gruvbox
+colorscheme middlenight_blue
 set background=dark
 
 lua require('init')
