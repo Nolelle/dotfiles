@@ -115,6 +115,11 @@ Plug 'kyazdani42/nvim-tree.lua'
 " AutoComplete Brackets
 Plug 'windwp/nvim-autopairs'
 
+" Debugging Adapter Protocol
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'theHamsta/nvim-dap-virtual-text'
+Plug 'nvim-telescope/telescope-dap.nvim'
 
 call plug#end()
 
@@ -127,7 +132,6 @@ nnoremap <leader>l :wincmd l<Cr>
 
 nnoremap <C-f> :Telescope find_files<Cr>
 nnoremap <C-d> :NvimTreeToggle<Cr>
-
 
 " --- Colours 
 colorscheme middlenight_blue
