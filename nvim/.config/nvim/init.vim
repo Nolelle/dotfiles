@@ -143,6 +143,6 @@ set background=dark
 
 
 " -- Require init.lua
-lua require('init')
+ lua require('init')
 
 

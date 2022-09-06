@@ -51,6 +51,8 @@ setupCommands = {
   },
 }
 
+require("nvim-dap-virtual-text").setup()
+
 require("dapui").setup({
   icons = { expanded = "▾", collapsed = "▸" },
   mappings = {
@@ -118,4 +120,3 @@ end
 dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end
-
