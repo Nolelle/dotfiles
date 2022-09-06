@@ -121,6 +121,10 @@ Plug 'rcarriga/nvim-dap-ui'
 Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'nvim-telescope/telescope-dap.nvim'
 
+" Github Co Pilot
+Plug 'github/copilot.vim'
+
+
 call plug#end()
 
 " --- Remaps
@@ -137,6 +141,8 @@ nnoremap <C-d> :NvimTreeToggle<Cr>
 colorscheme middlenight_blue
 set background=dark
 
+
+" -- Require init.lua
 lua require('init')
 
 
