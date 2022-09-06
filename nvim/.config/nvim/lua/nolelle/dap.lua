@@ -1,54 +1,36 @@
 local ok, dap = pcall(require, "dap")
 if not ok then return end
 
-vim.keymap.set("n", "<F1>", ":lua require'dap'.continue()<CR>")
-vim.keymap.set("n", "<F2>", ":lua require'dap'.step_over()<CR>")
-vim.keymap.set("n", "<F3>", ":lua require'dap'.step_into()<CR>")
-vim.keymap.set("n", "<F4>", ":lua require'dap'.step_out()<CR>")
-vim.keymap.set("n", "<F5>", ":lua require'dap'.toggle_breakpoint()<CR>")
-vim.keymap.set("n", "<F6>", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
-vim.keymap.set("n", "<F7>", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>")
-vim.keymap.set("n", "<F8>", ":lua require'dap'.repl.open()<CR>")
-vim.keymap.set("n", "<F9>", ":lua require'dap-go'.debug_test()<CR>")
+vim.keymap.set("n", "<F1>", ":lua require'dapui'.open()<CR>")
+vim.keymap.set("n", "<F2>", ":lua require'dapui'.close()<CR>")
+vim.keymap.set("n", "<F3>", ":lua require'dapui'.toggle()<CR>")
+vim.keymap.set("n", "<F4>", ":lua require'dap'.toggle_breakpoint()<CR>")
+vim.keymap.set("n", "<F5>", ":lua require'dap'.continue()<CR>")
+vim.keymap.set("n", "<F6>", ":lua require'dap'.step_into()<CR>")
+vim.keymap.set("n", "<F7>", ":lua require'dap'.step_over()<CR>")
+vim.keymap.set("n", "<F8>", ":lua require'dap'.step_out()<CR>")
+vim.keymap.set("n", "<F9>", ":lua require'dap'.repl.open()<CR>")
+vim.keymap.set("n", "<F10>", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
+vim.keymap.set("n", "<F11>", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>")
 
 
+-- C++ DAP Config
 dap.adapters.cppdbg = {
   id = 'cppdbg',
   type = 'executable',
-  command = 'Users/edmundyu/dap-adapters/cpptools-osx/extension/debugAdapters/bin/OpenDebugAD7',
+  command = '/Users/edmundyu/dap-adapters/cpptools-osx/extension/debugAdapters/bin/OpenDebugAD7',
 }
 
-dap.configurations.cpp = {
-  {
-    name = "Launch file",
+dap.configurations.cpp = { {
     type = "cppdbg",
-    request = "launch",
+    request = "attach",
+    name = "Launch File",
     program = function()
       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
     end,
     cwd = '${workspaceFolder}',
     stopAtEntry = true,
-  },
-  {
-    name = 'Attach to gdbserver :1234',
-    type = 'cppdbg',
-    request = 'launch',
-    MIMode = 'gdb',
-    miDebuggerServerAddress = 'localhost:1234',
-    miDebuggerPath = '/usr/bin/gdb',
-    cwd = '${workspaceFolder}',
-    program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-    end,
-  },
-}
-
-setupCommands = {  
-  { 
-     text = '-enable-pretty-printing',
-     description =  'enable pretty printing',
-     ignoreFailures = false 
-  },
+},
 }
 
 require("nvim-dap-virtual-text").setup()
