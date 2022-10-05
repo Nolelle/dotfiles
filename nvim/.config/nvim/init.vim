@@ -66,6 +66,9 @@ set ignorecase
 " Use case sensitive search if pattern includes uppercase letter
 set smartcase
 
+" Spell checking only for comments.
+:set spell
+
 " --- Plugins
 call plug#begin('~/.config/nvim/plugged')
 
@@ -124,8 +127,13 @@ Plug 'nvim-telescope/telescope-dap.nvim'
 " Github Co Pilot
 Plug 'github/copilot.vim'
 
+" Commenting.nvim
+Plug 'numToStr/Comment.nvim'
 
 call plug#end()
+
+" --- Comment.nvim
+lua require('Comment').setup()
 
 " --- Remaps
 let mapleader = ' '
@@ -138,7 +146,7 @@ nnoremap <C-f> :Telescope find_files<Cr>
 nnoremap <C-d> :NvimTreeToggle<Cr>
 
 " --- Colours 
-colorscheme middlenight_blue
+colorscheme gruvbox 
 set background=dark
 
 

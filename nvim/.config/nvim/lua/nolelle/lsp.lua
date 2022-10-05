@@ -53,7 +53,7 @@ capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
 -- Use a loop t conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'tsserver', 'pyright','rust_analyzer','solang','clangd','jdtls'}
+local servers = { 'tsserver','solidity_ls','pyright','rust_analyzer','clangd','jdtls'}
 
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
