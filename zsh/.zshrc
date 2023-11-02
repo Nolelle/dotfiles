@@ -6,7 +6,14 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:/Users/edmundyu/.local/share/solana/install/active_release/bin:/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:/Users/edmundyu/jdt-language-server-one-nine/bin:$PATH
+export PATH=$HOME/bin:\
+/usr/local/bin:\
+$HOME/.local/share/solana/install/active_release/bin:\
+$HOME/.yarn/bin:\
+$HOME/.config/yarn/global/node_modules/.bin:\
+$HOME/jdt-language-server-one-nine/bin:\
+/usr/local/bin/docker:\
+$PATH
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 eval "$(rbenv init - zsh)"
@@ -53,7 +60,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git nvm npm colorize tmux themes zsh-autosuggestions web-search)
+plugins=(git nvm npm colorize tmux themes zsh-autosuggestions web-search zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
 
 source $ZSH/oh-my-zsh.sh
 
